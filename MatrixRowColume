@@ -1,0 +1,78 @@
+// rendom data to matrix row x colume size.
+// make transpone matrix when you order.
+// print result
+// Please use it apply to your jobs.
+// If you can not complate it . Please order me to do it Buy Order Pizza Or Kfc to me.
+
+#include <iostream>
+
+using namespace std;
+
+#define row 2
+#define colume 4
+#define MAXVALUE 2000
+#define DECIMAL 0.01
+
+class matrix{
+    public:
+    double  data[row][colume];
+    
+    double  tdata[colume][row];
+    
+    double randomPoint(){
+       double randomPrice;
+       int ranPoint;
+       double doubleReturn;
+       ranPoint = rand();
+       doubleReturn = ranPoint % MAXVALUE;
+       doubleReturn = doubleReturn * DECIMAL;
+       randomPrice = MAXVALUE + doubleReturn ;
+       doubleReturn = randomPrice;
+      return(doubleReturn);
+   }
+    void setdata(){
+        for( int ii=0; ii <row; ii++){
+            for( int jj=0; jj < colume;jj++){
+                data[ii][jj]=randomPoint();
+            }
+        }
+    }
+    void transpone(){
+        for( int ii=0; ii <row; ii++){
+            for( int jj=0; jj < colume;jj++){
+                tdata[jj][ii] = data[ii][jj];
+            }
+        }
+    }
+    void print(){
+        for( int ii=0; ii <row; ii++){
+            for( int jj=0; jj < colume;jj++){
+                cout << data[ii][jj] << " ";
+            }
+            cout << "\n"; 
+        }
+    }
+    void printT(){
+        for( int ii=0; ii <colume; ii++){
+            for( int jj=0; jj < row;jj++){
+                cout << data[jj][ii] << " ";
+            }
+            cout << "\n"; 
+        }
+    }
+        
+    
+};
+
+int main()
+{
+    matrix m1,m2;
+    
+    m1.setdata();
+    m1.print();
+    cout << "---------------\n";
+    m2.setdata();
+    m2.print();
+    m2.transpone();
+    m2.printT();
+}
