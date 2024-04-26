@@ -1,0 +1,48 @@
+
+#include <cstdlib>
+#include <iostream>
+
+#define Number 50000
+class store {
+    public:
+        int maxValue;
+        int getmaxValue(){return(maxValue);}
+        void    PrintDate()
+        {
+            for(int ii=0;ii<Number;ii++) 
+            {
+                //Printf("%d\n",rnumber[ii]);
+                std::cout << "[" << rnumber[ii] << "]";
+            }
+            std::cout <<"max"<<maxValue;
+        }        
+    
+        void maxiNum(){
+            for(int ii=0;ii<Number;ii++){
+                maxValue=rnumber[ii]>maxValue?rnumber[ii]:maxValue;
+            
+            }
+        }
+        int rnumber[Number];
+        
+        void    storeDate(){
+            for(int ii=0;ii<Number;ii++) {
+                rnumber[ii]=rand();
+            }
+        }
+        
+};
+
+int main()
+{
+    store test1;
+    
+    test1.storeDate();
+    test1.maxiNum();
+    std::cout << "max"<<test1.getmaxValue();
+    test1.PrintDate();
+    
+    return(0);
+}
+
+
