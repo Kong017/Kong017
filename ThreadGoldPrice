@@ -1,0 +1,103 @@
+//test Thread gold price
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <chrono>
+#include <thread>
+using namespace std;
+#define MAXVALUE 2000
+#define DECIMAL 0.01
+class domain {
+public:
+    static int offset;
+ static   void updateClock() {
+    while (true) {
+        // Get current time
+        time_t now = time(nullptr);
+        tm *currentTime = localtime(&now);
+        // Move cursor to the beginning of the line
+        cout << "\r";
+        // Display current time
+        cout << "Time: ";
+//        int offset = getoffset();
+        cout << setfill('0') << setw(2) << currentTime->tm_hour+offset << ":"
+             << setw(2) << currentTime->tm_min << ":"
+             << setw(2) << currentTime->tm_sec ;
+        // Flush the output buffer to make sure it's printed immediately
+        cout.flush();
+        // Wait for 1 second before updating the clock again
+        this_thread::sleep_for(chrono::seconds(1));
+    }
+ }
+ static   void updateClock2() {
+    while (true) {
+        // Get current time
+        time_t now = time(nullptr);
+        tm *currentTime = localtime(&now);
+        // Move cursor to the beginning of the line
+        cout << "\r";
+        // Display current time
+        cout << "\t\tThailand: ";
+        cout << setfill('0') << setw(2) << currentTime->tm_hour+7 << ":"
+             << setw(2) << currentTime->tm_min << ":"
+             << setw(2) << currentTime->tm_sec;
+        // Flush the output buffer to make sure it's printed immediately
+        cout.flush();
+        // Wait for 1 second before updating the clock again
+        this_thread::sleep_for(chrono::seconds(1));
+    }
+ }
+ static void checkhead(){
+     int timecheck;
+     while(true){
+      cout<<"\t\t\t" + timecheck++;   
+         // Flush the output buffer to make sure it's printed immediately
+        cout.flush();
+        // Wait for 1 second before updating the clock again
+        this_thread::sleep_for(chrono::seconds(1));
+       }
+ }
+ 
+   static void  randomPoint(){
+       int ranPoint;
+       double doubleReturn;
+       double randomPrice;
+        while(true) {
+           ranPoint = rand();
+           doubleReturn = ranPoint % MAXVALUE;
+           doubleReturn = doubleReturn * DECIMAL;
+           randomPrice = MAXVALUE + doubleReturn ;
+            cout << "\t\t\t\tRandom:"<<randomPrice;
+            
+            cout.flush();
+           this_thread::sleep_for(chrono::seconds(1));
+          //return(doubleReturn);
+        }
+   }
+};
+int domain::offset=3;
+class domainSec{
+    public:
+      int main(){
+        domain doit;
+        domain doit2;
+        domain createPrice1;
+        //createPrice createPrice1;
+        
+        thread randomPriceDo(createPrice1.randomPoint);
+         // Start a separate thread to update the clock
+        thread clockThread(doit.updateClock);
+        thread clockThread2(doit.updateClock2);
+        // Wait for the clock thread to finish (which will never happen in this case)
+        clockThread.join();
+        clockThread2.join();
+        randomPriceDo.join();
+        return 0;
+       }
+};
+int main(){
+    domainSec mainSec;
+
+     mainSec.main();
+
+}
