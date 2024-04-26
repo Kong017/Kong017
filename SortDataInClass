@@ -1,0 +1,64 @@
+// A C++ program to demonstrate
+// STL sort() using
+// our own comparator
+#include <bits/stdc++.h>
+using namespace std;
+
+class Interval {
+   public:
+	int price, value,date;
+};
+
+ 
+class   stroeData{
+ public:
+  Interval arr[30];
+  int indata;
+  
+  void  storeData( int val);
+    
+  static bool compareInterval(Interval i1, Interval i2)
+  {
+            bool check;
+            
+            check = (i1.price < i2.price ? true : false);
+        	return ( check);
+  }
+     
+  void sortData() {
+      sort(arr, arr + indata, compareInterval);
+  }
+  void putData( int pprice, int pvolume){
+      arr[indata].price = pprice;
+      arr[indata].value = pvolume;
+      indata++;
+  }
+  void PrintData() {
+     for( int ii=0; ii < indata; ii ++){
+      cout << arr[ii].price << "," << arr[ii].value <<"," << arr[ii].date << "\n";
+     }
+  }
+  void store(){
+      indata = 0;
+  }
+};
+// Compares two intervals
+// according to starting times.
+
+int main(){
+    stroeData data;
+    
+    data.putData(2401,20);
+    data.putData(2400,20);
+    data.putData(2451,20);
+    data.putData(2345,20);
+    data.putData(2385,20);
+    data.putData(2461,20);
+    data.putData(2335,20);
+    data.putData(2345,20);
+    
+    data.putData(2305,20);
+    data.sortData();
+
+    data.PrintData();
+}
