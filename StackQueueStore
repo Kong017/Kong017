@@ -1,0 +1,133 @@
+// Secound edit store data queue amd stack
+// Please use it apply to your jobs.
+// If you can not complate it . Please order me to do it Buy Order Pizza Or Kfc 
+
+#include <iostream>
+
+template    <typename   T>
+class storeS {
+public:
+    T keep[300];
+    int index;
+    
+    void    store( T data){
+       keep[index++]=data; 
+    }
+    T getData() {
+        if(index==-1) return (-1);
+        else
+        return( keep[--index]);
+    }
+    void showA(){
+        for( int ii=index;ii>0;ii--){
+            T data;
+            
+            data = getData();
+            std::cout << data << "|";
+        }
+    }
+    void line() {
+        std::cout << "\n----------------------------\n";
+    }
+    storeS(){
+        index = 0; // normaly I didn't set , But someone asking me.
+    }
+};
+
+template    <typename   T>
+class storeQ {
+public:
+    T keep[300];
+    int indexStore, indexGet;
+    storeQ(){
+        indexStore = 0; indexGet = 0;// normaly I didn't set , But someone asking me.
+    }
+    void    store(T data){
+        keep[indexStore++] = data;
+    }
+    T getData(){
+        if(indexGet == indexStore) return(-1);
+        else{
+            //indexStore--;
+            return( keep[indexGet++]);
+        }
+    }
+    void showA(){
+        for( int ii=0;ii<indexStore;ii++){
+            T data;
+            
+            data = getData();
+            if(data == -1) break;
+            std::cout << data << "|";
+        }
+    }
+    
+    void line() {
+        std::cout << "\n----------------------------\n";
+    }
+};
+
+//template    <typename   T>
+
+int main()
+{
+    storeS <int> s,t;
+    storeQ <double> q;
+    
+    s.store(999);
+    s.store(998);
+    s.store(997);
+    s.store(996);
+    s.line();
+    s.showA();    
+    s.store(999);
+    s.store(998);
+    s.store(997);
+    s.store(996);
+    s.store(995);
+    s.store(994);
+    s.line();
+    s.showA(); 
+    
+    std::cout << "\n";
+    t.store(2000);
+    t.store(21999);
+    t.store(21998);
+    t.store(21997);
+    t.store(21996);
+    t.store(1995);
+    t.store(1994);
+    t.showA();
+    s.line();
+    std::cout << "\n";
+    
+
+    q.store(999);
+    q.store(998);
+    q.store(997);
+    q.store(996);
+    q.store(995);
+    q.store(994);
+    q.showA();
+    s.line();
+
+    q.store(999);
+    q.store(998);
+    q.store(997);
+    q.store(996);
+    q.store(995);
+    q.store(994);
+    q.store(1999);
+    q.store(1998);
+    q.store(1997);
+    q.store(1996);
+    q.store(1995);
+    q.store(1994);
+    q.showA();
+    s.line();
+    std::cout << "\n";
+
+    
+    return 0;
+}
+
